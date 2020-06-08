@@ -1,0 +1,27 @@
+{
+  "name": "express-ts",
+  "version": "1.0.0",
+  "description": "TS based express API",
+  "main": "index.js",
+  "scripts": {
+    "start:build": "tsc -w",
+    "start:exec": "nodemon build/index.js",
+    "start": "concurrently npm:start:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ai-zubair/express-ts.git"
+  },
+  "author": "Zubair Bashir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ai-zubair/express-ts/issues"
+  },
+  "homepage": "https://github.com/ai-zubair/express-ts#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
+    "typescript": "^3.9.5"
+  }
+}
