@@ -1,5 +1,6 @@
 import express from "express";
 import { loginRouter } from "./routes/login.route";
+import { homeRouter } from "./routes/home.route";
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
 
@@ -10,6 +11,8 @@ app.use(cookieSession({
   name: 'auth',
   keys: ['x32ygdgu23d9327c']
 }))
+
+app.use('/',homeRouter)
 app.use('/login',loginRouter)
 
 app.listen(3000,()=>{
