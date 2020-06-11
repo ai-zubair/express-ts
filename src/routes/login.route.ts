@@ -2,6 +2,10 @@ import { Router, Request, Response } from "express";
 
 const loginRouter = Router();
 
+interface RequestWithBody extends Request{
+  body: { [key:string]: string|undefined }
+}
+
 loginRouter.route("/")
   .get((req: Request, res: Response): void=>{
       res.send(`
@@ -18,12 +22,14 @@ loginRouter.route("/")
       </form>
     `)
   })
-  .post((req: Request, res: Response): void =>{
+  .post((req: RequestWithBody, res: Response): void =>{
     const { email, password } = req.body;
-    res.send({
-      email,
-      password
-    })
+    if(email && password && email === "x@x.com" && password === "123" && req.session){
+      req.session.isAuthenticated = true;
+      res.redirect('/');
+    }else{
+      res.send("Invalid email/password")
+    }
   })
 
 export { loginRouter }
