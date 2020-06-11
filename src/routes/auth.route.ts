@@ -1,4 +1,5 @@
 import { Router, Request, Response } from "express";
+import { authenticate } from './middlewares'
 
 const authRouter = Router();
 
@@ -33,7 +34,7 @@ authRouter.route("/login")
   })
 
 authRouter.route('/logout')
-  .get((req: Request, res: Response): void => {
+  .get(authenticate,(req: Request, res: Response): void => {
     req.session = null;
     res.redirect('/auth/login')
   })

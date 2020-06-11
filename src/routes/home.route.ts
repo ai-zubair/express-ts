@@ -1,4 +1,5 @@
 import { Router, Request, Response } from "express";
+import { authenticate } from './middlewares'
 
 const homeRouter = Router();
 
@@ -14,6 +15,11 @@ homeRouter.route('/')
     }else{
       res.redirect('/auth/login')
     }
+  })
+
+homeRouter.route('/protected')
+  .get(authenticate,(req:Request, res:Response)=>{
+    res.send("Youre viweing protected info")
   })
 
 export { homeRouter }
