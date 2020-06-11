@@ -8,11 +8,11 @@ homeRouter.route('/')
       res.send(`
         <div>
           <p>You're Logged In</p>
-          <a href="#">Log Out</a>
+          <a href="/auth/logout">Log Out</a>
         </div>
       `)
     }else{
-      res.redirect('/login')
+      res.redirect('/auth/login')
     }
   })
 

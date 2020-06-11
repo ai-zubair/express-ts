@@ -1,12 +1,12 @@
 import { Router, Request, Response } from "express";
 
-const loginRouter = Router();
+const authRouter = Router();
 
 interface RequestWithBody extends Request{
   body: { [key:string]: string|undefined }
 }
 
-loginRouter.route("/")
+authRouter.route("/login")
   .get((req: Request, res: Response): void=>{
       res.send(`
       <form method="POST">
@@ -32,4 +32,10 @@ loginRouter.route("/")
     }
   })
 
-export { loginRouter }
+authRouter.route('/logout')
+  .get((req: Request, res: Response): void => {
+    req.session = null;
+    res.redirect('/auth/login')
+  })
+
+export { authRouter }

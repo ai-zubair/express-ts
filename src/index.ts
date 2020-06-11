@@ -1,5 +1,5 @@
 import express from "express";
-import { loginRouter } from "./routes/login.route";
+import { authRouter } from "./routes/auth.route";
 import { homeRouter } from "./routes/home.route";
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
@@ -13,7 +13,7 @@ app.use(cookieSession({
 }))
 
 app.use('/',homeRouter)
-app.use('/login',loginRouter)
+app.use('/auth',authRouter)
 
 app.listen(3000,()=>{
   console.log("Fired at http://localhost:3000")
