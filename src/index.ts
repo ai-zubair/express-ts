@@ -3,6 +3,8 @@ import { authRouter } from "./routes/auth.route";
 import { homeRouter } from "./routes/home.route";
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
+import "./controllers/Login.controller";
+import { AppRouter } from "./AppRouter";
 
 const app = express();
 
@@ -13,7 +15,7 @@ app.use(cookieSession({
 }))
 
 app.use('/',homeRouter)
-app.use('/auth',authRouter)
+app.use(AppRouter.getRouter())
 
 app.listen(3000,()=>{
   console.log("Fired at http://localhost:3000")
