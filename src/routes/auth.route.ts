@@ -23,7 +23,7 @@ authRouter.route("/login")
       </form>
     `)
   })
-  .post((req: RequestWithBody, res: Response): void =>{
+  .post((req: Request, res: Response): void =>{
     const { email, password } = req.body;
     if(email && password && email === "x@x.com" && password === "123" && req.session){
       req.session.isAuthenticated = true;
