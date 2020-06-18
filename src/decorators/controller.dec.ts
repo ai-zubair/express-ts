@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { AppRouter } from "../AppRouter";
-import { HttpMethods } from "./constants";
+import { HttpMethods, MetadataKeys } from "./constants";
 
 export const controller = (route: string): ClassDecorator => {
   return function controllerDec( target: Function ): void{
@@ -10,9 +10,18 @@ export const controller = (route: string): ClassDecorator => {
 
     for (const memberKey in classPrototype) {
      
-      const path = Reflect.getMetadata("path", classPrototype, memberKey);
-      const method: HttpMethods = Reflect.getMetadata("method", classPrototype, memberKey);
-      
+      const path = Reflect.getMetadata(
+        MetadataKeys.PATH, 
+        classPrototype, 
+        memberKey
+      );
+
+      const method: HttpMethods = Reflect.getMetadata(
+        MetadataKeys.METHOD, 
+        classPrototype, 
+        memberKey
+      );
+
       if(path && method){
         appRouter[method](`${route}${path}`,classPrototype[memberKey])
       }

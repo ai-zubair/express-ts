@@ -4,3 +4,8 @@ export enum HttpMethods{
   DELETE = "delete",
   PUT = "put"
 }
+
+export enum MetadataKeys{
+  PATH = "path",
+  METHOD = "method"
+}
