@@ -48,5 +48,3 @@ class LoginController{
     res.redirect('/auth/login')
   }
 }
-
-export { LoginController }
