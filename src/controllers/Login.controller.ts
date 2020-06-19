@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
-import { get, controller } from "../decorators";
+import { get, controller, use } from "../decorators";
+import { authenticate } from "../middlewares/middlewares";
 
 @controller("/auth")
 class LoginController{
 
   @get("/login")
+  @use([authenticate])
   getLogin(req: Request, res: Response): void{
     if(req.session && req.session.isAuthenticated){
       res.redirect("/");

@@ -22,8 +22,14 @@ export const controller = (route: string): ClassDecorator => {
         memberKey
       );
 
+      const middlewares = Reflect.getMetadata(
+        MetadataKeys.MIDDLEWARE,
+        classPrototype,
+        memberKey
+      ) || [];
+
       if(path && method){
-        appRouter[method](`${route}${path}`,classPrototype[memberKey])
+        appRouter[method](`${route}${path}`, ...middlewares, classPrototype[memberKey])
       }
     }
   }
